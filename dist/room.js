@@ -38,7 +38,6 @@ AFRAME.registerComponent('room', {
         const data = this.data;
         const mapSource =  this.data.mapSource
         const wallTexture = data.wallTexture;
-        const floorTexture = data.floorTexture;
         let scale = data.scale;
         const elScale = data.scale;
         const wallColor = data.wallColor;
@@ -70,13 +69,15 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('height', WALL_HEIGHT / 20);
                         wall.setAttribute('static-body', '');
                         wall.setAttribute('position', floorPos);
-                        wall.setAttribute('material', 'src:#' + floorTexture);
+                        // wall.setAttribute('load-texture', '');
+                        // wall.setAttribute('material', 'src:#' + floorTexture);
                     }
                     // full height wall
                     if (mapSource.data[i] === 1) {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT);
                         wall.setAttribute('static-body', '');
+                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', position);
                         wall.setAttribute('material', 'src:#' + wallTexture);
                     }
@@ -85,6 +86,7 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT / 2);
                         wall.setAttribute('static-body', '');
+                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', halfYposition);
                         wall.setAttribute('material', 'src:#' + wallTexture);
                     }
@@ -93,6 +95,7 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT / 4);
                         wall.setAttribute('static-body', '');
+                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', quarterYposition);
                         wall.setAttribute('material', 'src:#' + wallTexture);
                     }
