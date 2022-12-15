@@ -34,7 +34,7 @@ The map editor also includes several templates to start you off with generic siz
 But you can add your own if you wish. 
 
 ####PLEASE NOTE: 
-currently, all width and heights of maps need to be square so 25 x 25 and not 25 x 27 for example
+Currently, all width and heights of maps need to be square so 25 x 25 and not 25 x 27 for example
 
 ### Import maps into component 
 Open mapTest.json 
@@ -47,7 +47,6 @@ Copy exported array from map editor and replace "data" with your exported array
     }
 
 ### Component Schema
-
 The modifiable schema - you can pass values and modify the following values - 
 To add a custom map - add mapToLoad with the name of the JSON file containing the map data you exported before.
 You can add as many rooms as you want. This will load the map data and other metadata from the JSON, expecting the format as above
@@ -65,14 +64,14 @@ You can add as many rooms as you want. This will load the map data and other met
 
 ### Typical Example of using the Room Component
 An example of two entities using the room component to generate two separate maps, as show in the examples in 
-index.html of this repo. To pass custum textures, you must also load the textures into A-frame assets and pass the component
+index.html of this repo. To pass custom textures, you must also load the textures into A-frame assets and pass the component
 the ID of the asset. 
 
 Include the room.js or room.min.js component code 
 
     <script src="room.js"></script>
 
-Add the room componenet to an entity
+Add the room component to an entity
 
      <!-- rooms component examples-->
      <a-entity id ="room" room="mapToLoad:mapTest; wallColor:red; wallTexture:brick;"></a-entity>
