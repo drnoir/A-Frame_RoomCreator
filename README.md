@@ -1,6 +1,8 @@
 # A-FRAME Room Creator component (BETA 1.0) 
 BY Chris Godber
 
+![alt text](https://github.com/drnoir/A-Frame_RoomCreator/blob/master/roomcomponent.jpg?raw=true)
+
 Room maker and room editor component prototype based on 
 https://hacks.mozilla.org/2017/09/i-built-something-with-a-frame-in-2-days-and-you-can-too/ by 
 Dan Brown @slightlyoffbeat / https://www.danvswild.com/
@@ -12,6 +14,8 @@ A basic prototypal map editor and A-Frame component for building rooms
 - Map Editor with export under tools to create square rooms of fixed height and width 
 - Create multiple custom rooms with the 'room' component
 - Add custom textures colors etc to walls
+
+![alt text](https://github.com/drnoir/A-Frame_RoomCreator/blob/master/mapeditor.jpg?raw=true)
 
 ### How to create a room with the map editor
 Tools/MapEditor and open index.html
