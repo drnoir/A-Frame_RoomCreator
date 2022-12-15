@@ -59,6 +59,12 @@ An example of two entities using the room component to generate two separate map
 index.html of this repo. To pass custum textures, you must also load the textures into A-frame assets and pass the component
 the ID of the asset. 
 
+Include the room.js or room.min.js component code 
+
+    <script src="room.js"></script>
+
+Add the room componenet to an entity
+
      <!-- rooms component examples-->
-    <a-entity id ="room" room="mapToLoad:mapTest; wallColor:red; wallTexture:brick;"></a-entity>
-    <a-entity id ="room2"  position ='0 0 -30' room="mapToLoad:mapTest2; wallColor:green; wallTexture:brick;"></a-entity>
+     <a-entity id ="room" room="mapToLoad:mapTest; wallColor:red; wallTexture:brick;"></a-entity>
+     <a-entity id ="room2"  position ='0 0 -30' room="mapToLoad:mapTest2; wallColor:green; wallTexture:brick;"></a-entity>

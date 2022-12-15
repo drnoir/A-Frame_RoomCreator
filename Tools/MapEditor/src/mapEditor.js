@@ -1,12 +1,11 @@
 // map editor js - main js scrupt for the map editor for creating maps
 
 // global map editor vars
-
 let sceneMetadata;
 let textures;
 let mapTemplate = [];
 let templateSize = 25;
-let templateWalled = true;
+let templateWalled = false;
 let chars;
 let mapRes;
 let saveNum = 1;
@@ -26,7 +25,7 @@ let paintMode = ['wall','enemies', 'door', 'delete' ];
 let currentPaintMode =  paintMode[0];
 let deleteMode =false;
 
-// dialogueUI Elements
+// scene elements
 const scene = document.querySelector('a-scene');
 const assets = document.querySelector('a-assets');
 
@@ -35,6 +34,12 @@ const downloadBtn = document.getElementById('downloadBtn');
 downloadBtn.addEventListener('mousedown', (event) => {
     exportJSON();
 });
+
+function clearScene(){
+    const el = document.getElementById('room');
+    el.parentNode.removeChild(el);
+
+}
 
 AFRAME.registerComponent('editor-listener', {
     schema: {
@@ -129,7 +134,9 @@ AFRAME.registerComponent('map', {
 init();
 
 async function init() {
-    // await loadChars();
+    let room = document.createElement('a-entity');
+    room.setAttribute('id', 'room');
+    scene.appendChild(room);
     await loadTextures();
     await loadMapTemplateData( templateSize);
     await createRooms();
@@ -149,10 +156,6 @@ async function loadMapTemplateData(templateSize) {
     console.log(mapRes.length);
 }
 
-async function loadChars() {
-    const res = await fetch('../../DemoGame/charecters.json')
-    chars = await res.json();
-}
 
 async function loadTextures(e) {
     let fetchURL = './textures/textures.json';
@@ -175,12 +178,9 @@ function createRooms() {
     const charNum = mapRes.charnumber;
     let charLoopIndex = 0;
 
-
-    console.log(typeof wallTexture);
-
     const WALL_SIZE = 0.8;
     const WALL_HEIGHT = wallHeight;
-    const el = document.getElementById('room')
+    const el = document.getElementById('room');
     // let playerPos;
     let wall;
     let floorIndex = 0;
@@ -208,26 +208,6 @@ function createRooms() {
             const charPos = `${((x - (mapRes.width / 2)) * WALL_SIZE)} 0 ${(y - (mapRes.height / 2)) * WALL_SIZE}`;
             const torchPosition = `${((x - (mapRes.width / 2)) * WALL_SIZE)} 4 ${(y - (mapRes.height / 2)) * WALL_SIZE}`;
             const stairsPos = `${((x - (mapRes.width / 2)) * WALL_SIZE)} ${(y - (mapRes.height)) * WALL_SIZE} ${(y - (mapRes.height / 2)) * WALL_SIZE}`;
-
-            if (mapData[i] === 9) {
-                const enemy1 = document.createElement('a-entity');
-                enemy1.setAttribute('enemy', 'modelPath:./models/Hellknight.obj; format:obj;');
-                enemy1.setAttribute('id', 'enemy');
-                enemy1.setAttribute('position', charPos);
-                el.appendChild(enemy1);
-            }
-
-
-            if (typeof mapData[i] === 'string' && mapData[i].charAt(0) === "d") {
-                const door = document.createElement('a-box');
-                door.setAttribute('width', WALL_SIZE);
-                door.setAttribute('height', WALL_HEIGHT);
-                door.setAttribute('depth', WALL_SIZE);
-                door.setAttribute('position', position);
-                door.setAttribute('material', 'src: #grunge; repeat: 1 2');
-                // create component for door / lock
-                door.setAttribute('locked', 'false');
-            }
 
             // if the number is 1 - 4, create a wall
             if (mapData[i] === 0 || mapData[i] === 1 || mapData[i] == 2 || mapData[i] === 3 || mapData[i] === 4) {
@@ -274,12 +254,6 @@ function createRooms() {
                     wall.setAttribute('static-body', '');
                     wall.setAttribute('position', quarterYposition);
                     wall.setAttribute('material', 'src:#' + wallTexture2);
-                }
-                // door
-                if (mapData[i] === 4) {
-                    wall.setAttribute('id', 'door');
-                    // create component for door / lock
-                    wall.setAttribute('material', 'src:#' + doorTexture);
                 }
             }
         }
@@ -336,6 +310,14 @@ const wallType = document.getElementById('wallType')
 // reassign types for select dropdown UI
 wallType.addEventListener("change", function() {
     currentEntity = setOption('wallType');
+});
+
+const mapTemplateSize = document.getElementById('templateSize')
+// reassign types template size for select dropdown UI
+mapTemplateSize.addEventListener("change", function() {
+    templateSize = setOption('templateSize');
+    clearScene();
+    init();
 });
 
 const paintModeSelect = document.getElementById('paintmode')
