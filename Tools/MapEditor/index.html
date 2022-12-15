@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map Editor</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script src="../libs/aframe-extras.min.js"></script>
+    <script src="FileSaver.min.js"></script>
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+<div id="myEmbeddedScene">
+    <a-scene embedded vr-mode-ui="enabled: false">
+        <a-assets>
+            <img id="brick" src="textures/structures/rocky.JPG">
+            <img id="door" src="textures/wood/bigdoor.JPG">
+            <img id="floorboards" src="textures/wood/floorboards.JPG">
+            <img id="floor" src="textures/wood/floor.JPG">
+            <img id="wooddoor" src="textures/wood/woodendoor.jpg">
+            <img id="grunge" src="textures/structures/grunge.jpg">
+            <img id="orangebrick" src="textures/walls/orangebrick.JPG">
+            <img id="oldbrick" src="textures/walls/oldbrick.JPG">
+            <!-- models -->
+            <!--textures-->
+            <a-mixin id="wall"
+                     geometry="primitive: box; height: 1; width: 1; depth: 1"
+                     material="color:black;"
+            ></a-mixin>
+        </a-assets>
+        <a-entity light="type: ambient; color: #CCC;intensity: 0.2;"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+        <a-entity id="rig" movement-controls="fly: true; speed: 1">
+            <a-entity camera look-controls position="0 1.6 4" id="player">
+                <a-entity cursor="fuse: true; fuseTimeout: 500"
+                          position="0 0 -01"
+                          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                          material="color: black; shader: flat">
+                </a-entity>
+            </a-entity>
+        </a-entity>
+        <a-entity environment ="preset: volcano; ground:flat; playArea:300;" position="0 0 -20"></a-entity>
+        <!-- Walls (used by map-old.json.js -->)
+        <a-entity id="room"></a-entity>
+        <!-- Sky -->
+        <a-sky id="sky" color="#00468b"></a-sky>
+    </a-scene>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a id="closebtn">&times;</a>
+    <h2>Papyrus 3D Map Editor</h2>
+    <h4>Paint Mode</h4>
+    <select id="paintmode" class="m1 ">
+        <option value="0">Walls</option>
+    </select>
+    <label for="deletemode">
+        <input type="checkbox" id="deletemode" name="deletemode" value="no"> DELETE MODE
+    </label>
+    <h4>Wall Type</h4>
+    <select id="wallType" class="m1 ">
+        <option value="1">Full Height</option>
+        <option value="2">1/2 Height</option>
+        <option value="3">1/3 Height</option>
+    </select>
+</div>
+<div style="font-size:28px;cursor:pointer" id="openEditor" class="m1">&#9776; Open Editor Menu</div>
+<button id="downloadBtn" class="m1 floatRight">Download Map</button>
+</body>
+<script src="src/UIEditor.js" type="module"></script>
+<script src="src/mapEditor.js" type="module"></script>
+</html>
