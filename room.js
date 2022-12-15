@@ -53,8 +53,8 @@ AFRAME.registerComponent('room', {
                 const i = (y * mapSource.width) + x;
                 const floorPos = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const position = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 2)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
-                const halfYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 1 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
-                const quarterYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
+                const halfYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
+                const quarterYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 4)) * WALL_SIZE}`;
                 // if the number is 1 - 4, create a wall
                 if (mapSource.data[i] === 0 || mapSource.data[i] === 1 || mapSource.data[i] == 2 || mapSource.data[i] === 3) {
                     wall = document.createElement('a-box');

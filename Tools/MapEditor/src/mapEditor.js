@@ -5,7 +5,7 @@ let sceneMetadata;
 let textures;
 let mapTemplate = [];
 let templateSize = 25;
-let templateWalled = false;
+let templateWalled = true;
 let chars;
 let mapRes;
 let saveNum = 1;
@@ -74,7 +74,7 @@ AFRAME.registerComponent('editor-listener', {
                     el.setAttribute('material', 'src:#' + wallTexture2);
                 }
                 else if (currentEntity === 3 && !deleteMode) {
-                    l.object3D.position.y = 0.5;
+                    el.object3D.position.y = 0.5;
                     el.setAttribute('material', 'src:#' + wallTexture3);
                 }
                 else if (currentEntity === 0 && deleteMode) {
@@ -90,14 +90,6 @@ AFRAME.registerComponent('editor-listener', {
                 console.log('I was clicked at: ', evt.detail.intersection.point);
                 console.log('I was clicked at: ', evt.detail.intersection);
                 console.log('index Map: ', index);
-                // update the map and show new element
-                updateMap(index, currentEntity);
-            }
-            if (currentPaintMode === "door" ) {
-                el.setAttribute('material', 'src:#' + doorTexture);
-                el.setAttribute('height', wallHeight);
-                el.object3D.position.y = 0.5;
-                el.setAttribute('material',  'src:#' + doorTexture+'repeat:1 1');
                 // update the map and show new element
                 updateMap(index, currentEntity);
             }
