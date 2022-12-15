@@ -7,6 +7,15 @@ Room maker and room editor component prototype based on
 https://hacks.mozilla.org/2017/09/i-built-something-with-a-frame-in-2-days-and-you-can-too/ by 
 Dan Brown @slightlyoffbeat / https://www.danvswild.com/
 
+
+# Try it Out
+
+### Component Demo
+https://drnoir.github.io/A-Frame_RoomCreator/
+### Map Editor
+https://drnoir.github.io/A-Frame_RoomCreator/Tools/MapEditor/
+
+
 ### Purpose:
 A basic prototypal map editor and A-Frame component for building rooms 
 
