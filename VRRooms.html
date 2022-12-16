@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VR Rooms Example with Gaze based movement</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <!--textures-->
+        <img id="floor" src="./textures/wood/floorboards.jpg">
+        <img id="grunge" src="./textures/walls/whitebrick.jpg">
+        <img id="orange" src="./textures/walls/orangebrick.jpg">
+        <img id="wood" src="./textures/wood/wood.jpg">
+        <img id="box" src="./textures/wood/box.jpg">
+    </a-assets>
+    <a-entity environment="preset: starry; ground:flat; playArea:300; dressing:none;"></a-entity>
+    <a-entity id="playercam" position="1 1.5 2">
+        <a-entity id="camera" camera look-controls>
+            <a-entity animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                      animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                      animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                      cursor="fuse: true;"
+                      material="color: white; shader: flat"
+                      position="0 0 -1"
+                      geometry="primitive: ring; radiusInner: 0.2; radiusOuter: 0.25;"
+                      scale="0.1 0.1 0.1"
+            >
+            </a-entity>
+        </a-entity>
+    </a-entity>
+    <a-entity light="type: ambient; color: #CCC;intensity: 0.6;"></a-entity>
+    <a-entity id ="room"
+              room="mapToLoad:vrRoom1; wallColor:white; floorColor:white; wallTexture:grunge;  wallTexture2:box; wallTexture3:wood;floorTexture:floor; wallHeight:3;">
+    </a-entity>
+    <a-entity id ="room2"  position ='-8 0 23' rotation = '0 180 0'
+              room="mapToLoad:VR2ndRoom; wallColor:white; floorColor: white; wallTexture:grunge; wallTexture2:grunge; wallTexture3:wood;floorTexture:floor; wallHeight:3;">  </a-entity>
+</a-scene>c
+</body>
+<script src="room.js"></script>
+<script src="VRCam.js"></script>
+</html>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/editor.css">
 </head>
 <body>
-<div id="myEmbeddedScene">
+<div>
     <a-scene embedded vr-mode-ui="enabled: false">
         <a-assets>
             <img id="brick" src="textures/structures/rocky.JPG">
@@ -30,7 +30,7 @@
         </a-assets>
         <a-entity light="type: ambient; color: #CCC;intensity: 0.2;"></a-entity>
         <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
-        <a-entity id="rig" movement-controls="fly: true; speed: 1">
+        <a-entity id="rig" movement-controls="fly: true; speed: 0.8">
             <a-entity camera look-controls position="0 1.6 4" id="player">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -01"

@@ -7,6 +7,8 @@ AFRAME.registerComponent('room', {
         wallColor: {type: 'string', default: 'white'},
         floorColor: {type: 'string', default: 'white'},
         wallTexture: {type: 'string', default: 'none'},
+        wallTexture2: {type: 'string', default: 'none'},
+        wallTexture3: {type: 'string', default: 'none'},
         scale:{type: 'string', default: '1 1 1'},
         wallSize: {type:'string', default:'1'},
         wallHeight: {type:'string', default:'3'},
@@ -38,6 +40,9 @@ AFRAME.registerComponent('room', {
         const data = this.data;
         const mapSource =  this.data.mapSource
         const wallTexture = data.wallTexture;
+        const wallTexture2 = data.wallTexture2;
+        const wallTexture3 = data.wallTexture3;
+        const floorTexture = data.floorTexture;
         let scale = data.scale;
         const elScale = data.scale;
         const wallColor = data.wallColor;
@@ -52,8 +57,8 @@ AFRAME.registerComponent('room', {
                 const i = (y * mapSource.width) + x;
                 const floorPos = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const position = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 2)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
-                const halfYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 1 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
-                const quarterYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
+                const halfYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 4)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
+                const quarterYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 8)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 // if the number is 1 - 4, create a wall
                 if (mapSource.data[i] === 0 || mapSource.data[i] === 1 || mapSource.data[i] == 2 || mapSource.data[i] === 3) {
                     wall = document.createElement('a-box');
@@ -61,6 +66,7 @@ AFRAME.registerComponent('room', {
                     wall.setAttribute('height', WALL_HEIGHT);
                     wall.setAttribute('depth', WALL_SIZE);
                     wall.setAttribute('position', position);
+                    wall.setAttribute('static-body', '');
                     wall.setAttribute('material', 'src:#' + wallTexture);
                     this.el.appendChild(wall);
                     // floor
@@ -69,15 +75,14 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('height', WALL_HEIGHT / 20);
                         wall.setAttribute('static-body', '');
                         wall.setAttribute('position', floorPos);
-                        // wall.setAttribute('load-texture', '');
-                        // wall.setAttribute('material', 'src:#' + floorTexture);
+                        wall.setAttribute('material', 'src:#' + floorTexture);
+                        wall.setAttribute('playermovement','');
                     }
                     // full height wall
                     if (mapSource.data[i] === 1) {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT);
                         wall.setAttribute('static-body', '');
-                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', position);
                         wall.setAttribute('material', 'src:#' + wallTexture);
                     }
@@ -86,22 +91,20 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT / 2);
                         wall.setAttribute('static-body', '');
-                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', halfYposition);
-                        wall.setAttribute('material', 'src:#' + wallTexture);
+                        wall.setAttribute('material', 'src:#' + wallTexture2);
                     }
                     //  1/4 height wall
                     if (mapSource.data[i] === 3) {
                         wall.setAttribute('color', wallColor);
                         wall.setAttribute('height', WALL_HEIGHT / 4);
                         wall.setAttribute('static-body', '');
-                        // wall.setAttribute('load-texture', '');
                         wall.setAttribute('position', quarterYposition);
-                        wall.setAttribute('material', 'src:#' + wallTexture);
+                        wall.setAttribute('material', 'src:#' + wallTexture3);
                     }
                 }
             }
         }
     },
-    });
+});
 
