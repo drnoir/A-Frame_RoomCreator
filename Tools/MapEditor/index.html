@@ -11,7 +11,7 @@
 </head>
 <body>
 <div>
-    <a-scene embedded vr-mode-ui="enabled: false">
+    <a-scene  vr-mode-ui="enabled: false">
         <a-assets>
             <img id="brick" src="textures/structures/rocky.JPG">
             <img id="door" src="textures/wood/bigdoor.JPG">
@@ -39,7 +39,7 @@
                 </a-entity>
             </a-entity>
         </a-entity>
-        <a-entity environment ="preset: goaland; ground:flat; playArea:300; dressing:none;" position="0 0 -20"></a-entity>
+        <a-entity environment ="preset: forest; ground:flat; playArea:300; dressing:none;" position="0 0 -20"></a-entity>
         <!-- Walls (used by map-old.json.js -->)
         <a-entity id="room"></a-entity>
         <!-- Sky -->
@@ -54,7 +54,7 @@
         <option value="0">Walls</option>
     </select>
     <label for="deletemode">
-        <input type="checkbox" id="deletemode" name="deletemode" value="no"> DELETE MODE
+        <input type="checkbox" id="deletemode" name="deletemode" value="no"> Toggle DELETE MODE
     </label>
     <h4>Wall Type</h4>
     <select id="wallType" class="m1 ">
@@ -68,9 +68,11 @@
         <option value="50">50 x 50</option>
         <option value="100">100 x 100</option>
     </select>
+    <div>
+        <button id="downloadBtn" class="m1">Download Map</button>
+    </div>
 </div>
 <div style="font-size:28px;cursor:pointer" id="openEditor" class="m1">&#9776; Open Editor Menu</div>
-<button id="downloadBtn" class="m1 floatRight">Download Map</button>
 </body>
 <script src="src/UIEditor.js" type="module"></script>
 <script src="src/mapEditor.js" type="module"></script>

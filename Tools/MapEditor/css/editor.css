@@ -14,11 +14,11 @@ body{
 }
 
 h2{
-    color:white;
+    color:black;
     padding:0.5em;
 }
 h4{
-    color:white;
+    color:black;
     padding:0.5em;
 }
 #editorUI{
@@ -37,6 +37,7 @@ a-scene {
     position: fixed;
     top:0;
 }
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -44,7 +45,7 @@ a-scene {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: lightgrey;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;

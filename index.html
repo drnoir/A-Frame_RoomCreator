@@ -2,44 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Room Component Demo</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.js"></script>
-<!--    // UNCOMMENT FOR  FOR PHYSICS-->
-<!--    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>-->
-<!--    <script src="aframe-physics-system.min.js"></script>-->
-<!--    <script src = "components.js"/>-->
-<!--    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>-->
-<!--    ENVIRONMENT COMPONENT-->
-    <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <title>Room Component Demos</title>
 </head>
 <body>
-<a-scene>
-    <a-assets>
-        <!--textures-->
-        <img id="brick" src="./textures/walls/brick.jpg">
-        <img id="door" src="./textures/wood/bigdoor.jpg">
-        <img id="floorboards" src="./textures/wood/floorboards.jpg">
-        <img id="floor" src="./textures/wood/floor.jpg">
-        <img id="wooddoor" src="./textures/wood/wooddoor.jpg">
-        <img id="grunge" src="textures/structures/whiterock.jpg">
-        <img id="orangebrick" src="./textures/walls/orangebrick.jpg">
-    </a-assets>
-    <a-entity light="type: ambient; color: #CCC;intensity: 0.1;"></a-entity>
-        <a-entity id="camera" position ='0 1 0' camera look-controls wasd-controls ></a-entity>
-<!-- -->
-
-    <a-entity environment ="preset: goaland; ground:flat; playArea:300; dressing:none;" position="0 0 -20"></a-entity>
-    <!-- rooms component examples-->
-    <a-entity id ="room"
-              room="mapToLoad:map; wallColor:#FFFFE0; wallTexture:grunge; wallTexture2:grunge; wallTexture3:grunge;floorTexture:wooddoor; indoor:true"></a-entity>
-    <a-entity id ="room2"  position ='-25 0 50'
-              room="mapToLoad:mapTest2; wallColor:pink; wallTexture:brick; wallTexture2:grunge; wallTexture3:grunge;floorTexture:floor;"></a-entity>
-<!--     example of stacked floor-->
-    <a-entity id ="room3" position ='0 0 -30'
-              room="mapToLoad:map; wallColor:red; wallTexture:grunge;floorTexture:wooddoor;"></a-entity>
-    <!-- Sky -->
-        <a-sky id="sky" color="#fff"></a-sky>
-</a-scene>
 </body>
-<script src="room.js"></script>
 </html>
