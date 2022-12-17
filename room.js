@@ -13,7 +13,8 @@ AFRAME.registerComponent('room', {
         wallSize: {type:'string', default:'1'},
         wallHeight: {type:'string', default:'3'},
         mapToLoad: {type:'string', default: 'map'},
-        mapSource: {type:'array', default:[]}
+        mapSource: {type:'array', default:[]},
+        indoor: {type:'boolean', default:false}
     },
     init: async function () {
         await this.loadData()
@@ -47,6 +48,7 @@ AFRAME.registerComponent('room', {
         const elScale = data.scale;
         const wallColor = data.wallColor;
         const floorColor = data.floorColor;
+        const indoor = data.indoor;
         let mapWall;
         const WALL_SIZE = data.wallSize;
         const WALL_HEIGHT = data.wallHeight;
@@ -55,13 +57,16 @@ AFRAME.registerComponent('room', {
             for (let y = 0; y < mapSource.width; y++) {
                 console.log('room running');
                 const i = (y * mapSource.width) + x;
+                const roofPos = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const floorPos = `${((x - (mapSource.width / 2)) * WALL_SIZE)} 0 ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const position = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 2)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const halfYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 4)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
                 const quarterYposition = `${((x - (mapSource.width / 2)) * WALL_SIZE)} ${(WALL_HEIGHT / 8)} ${(y - (mapSource.height / 2)) * WALL_SIZE}`;
+
+
                 // if the number is 1 - 4, create a wall
                 if (mapSource.data[i] === 0 || mapSource.data[i] === 1 || mapSource.data[i] == 2 || mapSource.data[i] === 3) {
-                    wall = document.createElement('a-box');
+                   let  wall = document.createElement('a-box');
                     wall.setAttribute('width', WALL_SIZE);
                     wall.setAttribute('height', WALL_HEIGHT);
                     wall.setAttribute('depth', WALL_SIZE);
@@ -69,6 +74,15 @@ AFRAME.registerComponent('room', {
                     wall.setAttribute('static-body', '');
                     wall.setAttribute('material', 'src:#' + wallTexture);
                     this.el.appendChild(wall);
+
+                    if (indoor){
+                        let roof= document.createElement('a-box');
+                        roof.setAttribute('color', floorColor );
+                        roof.setAttribute('height',WALL_HEIGHT / 20 );
+                        roof.setAttribute('position', roofPos);
+                        roof.setAttribute('material', 'src:#' + wallTexture);
+                        this.el.appendChild(roof);
+                    }
                     // floor
                     if (mapSource.data[i] === 0) {
                         wall.setAttribute('color', floorColor );
@@ -77,6 +91,8 @@ AFRAME.registerComponent('room', {
                         wall.setAttribute('position', floorPos);
                         wall.setAttribute('material', 'src:#' + floorTexture);
                         wall.setAttribute('playermovement','');
+
+
                     }
                     // full height wall
                     if (mapSource.data[i] === 1) {
