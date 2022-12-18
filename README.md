@@ -28,7 +28,7 @@ A basic map editor and exporter and A-Frame component for building rooms and blo
 - Create multiple custom rooms with the 'room' component
 - Assign custum textures to rooms
 
-![alt text](https://github.com/drnoir/A-Frame_RoomCreator/blob/master/mapeditor.jpg?raw=true)
+![alt text](https://raw.githubusercontent.com/drnoir/A-Frame_RoomCreator/master/editor.jpg?raw=true)
 
 ### How to create a room with the map editor
 Tools/MapEditor and open index.html
