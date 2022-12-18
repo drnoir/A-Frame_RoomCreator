@@ -2,8 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="pico.min.css">
     <title>Room Component Demos</title>
 </head>
 <body>
+<main class="container">
+    <img src="logo.svg" alt="Logo" width = "120">
+    <h1>A-Frame Room Creator Component and Map Editor by DrNoir (Chris Godber)</h1>
+    <nav>
+        <ul>
+            <li><strong>Open Examples / Editor</strong></li>
+        </ul>
+        <ul>
+            <li><a href="https://drnoir.github.io/A-Frame_RoomCreator/examples/standard.html">Standard Demo</a></li>
+            <li><a href="https://drnoir.github.io/A-Frame_RoomCreator/examples/VRRooms.html">VR Demo</a></li>
+            <li><a href="https://drnoir.github.io/A-Frame_RoomCreator/Tools/MapEditor/index.html">Map Editor</a></li>
+        </ul>
+    </nav>
+    <p>A Basic Map Editor and exporter and A-Frame component for building and creating rooms and block based
+        environments</p>
+    <article>
+        <header>Features</header>
+        <ul>
+            <li>Map Editor with export under tools to create square rooms of fixed height and width (25x25,50x50, 100 x
+                100)
+            </li>
+            <li>Create multiple custom rooms with the 'room' component</li>
+            <li> Assign custum textures to rooms</li>
+        </ul>
+    </article>
+    <h2>Documentation</h2>
+    <article>
+        <header>How to Create a Map</header>
+        <img src="editor.jpg"/>
+        <ul>
+            <li>Tools/MapEditor and open index.html</li>
+            <li>This is a simple app for creating maps to export as json for use by the component.</li>
+            <li>You can add walls, 1/2 walls and 1/3 walls and toggle delete mode to delete walls you've added.</li>
+            <li>Click the Export the map button to export the map you build.</li>
+            <li>The map editor also includes several templates to start you off with generic sizes - 25 x 25, 50 x 50
+            </li>
+            <li>A future version will hopefully include the ability to create custom templates.</li>
+        </ul>
+        <strong>IMPORTANT: Currently, all width and heights of maps need to be square so 25 x 25 and not 25 x 27 for
+            example</strong>
+    </article>
+    <article>
+        <header>How to Import maps into component</header>
+        <img src="roomcomponent.jpg"/>
+        <p>Create a json file in following format or simply copy and paste map.json in dist</p>
+        <p> Copy exported array from map editor and replace "data" with your exported array</p>
+        <pre>
+            {
+            "data": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            "height": 25,
+            "width": 25
+            }
+        </pre>
+        <h4>Video Tutorial</h4>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_lUWkL84bjA" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </article>
+    <article>
+        <header>Component Schema</header>
+        <p>
+            The modifiable schema - you can pass values and modify the following values -
+            To add a custom map - add mapToLoad with the name of the JSON file containing the map data you exported
+            before.
+            You can add as many rooms as you want. This will load the map data and other metadata from the JSON,
+            expecting the format as above
+        </p>
+        <pre>
+                wallColor: {type: 'string', default: 'white'}, - color of walls
+                floorColor: {type: 'string', default: 'white'}, - color of floors
+                wallTexture: {type: 'string', default: 'none'}, - custum texture for wall full height
+                wallTexture2: {type: 'string', default: 'none'}, - custum texture for 1/2 wall height
+                wallTexture3: {type: 'string', default: 'none'}, custum texture for 1/3 wall height
+                scale:{type: 'string', default: '1 1 1'}, - scale
+                wallSize: {type:'string', default:'1'}, - wall sizing
+                wallHeight: {type:'string', default:'3'}, - height of walls
+                mapToLoad: {type:'string', default: 'map'}, - map to load - JSON file name
+                indoor: {type:'boolean', default:false} - is the map indoor or outdoor?
+        </pre>
+    </article>
+</main>
 </body>
 </html>
