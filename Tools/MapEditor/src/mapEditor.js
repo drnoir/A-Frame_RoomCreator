@@ -1,6 +1,6 @@
 // map editor js - main js scrupt for the map editor for creating maps
 
-// global map editor vars
+// global map editor vars 
 let sceneMetadata;
 let textures;
 let mapTemplate = [];
@@ -52,19 +52,9 @@ AFRAME.registerComponent('editor-listener', {
         const data = this.data;
         let index = data.index;
         const el = this.el;
-        // this.el.addEventListener('mouseover', function (evt) {
-        //     let lastHoverIndex = (lastHoverIndex + 1) % data.colors.length;
-        //     this.el.setAttribute('material', 'color', data.colors[lastHoverIndex]);
-        // });
-        //
-        // this.el.addEventListener('mouseout', function (evt) {
-        //     let lastHoverIndex = (lastHoverIndex - 1) % data.colors.length;
-        //     this.el.setAttribute('material', 'color', "#fff");
-        // });
         this.el.addEventListener('mousedown', function (evt) {
             const WALL_HEIGHT = wallHeight;
             if (currentPaintMode === "wall" ) {
-                // this.setAttribute('material', 'color', "#000");
                 el.setAttribute('material', 'src:#' + wallTexture);
                 el.setAttribute('height', wallHeight);
                 if (currentEntity === 1 && !deleteMode) {
@@ -87,9 +77,6 @@ AFRAME.registerComponent('editor-listener', {
                     el.setAttribute('height', WALL_HEIGHT / 20);
                     el.setAttribute('material', 'src:#' + floorTexture);
                 }
-                console.log('I was clicked at: ', evt.detail.intersection.point);
-                console.log('I was clicked at: ', evt.detail.intersection);
-                console.log('index Map: ', index);
                 // update the map and show new element
                 updateMap(index, currentEntity);
             }
@@ -125,6 +112,7 @@ AFRAME.registerComponent('map', {
 //create the blank map scene
 init();
 
+
 async function init() {
     let room = document.createElement('a-entity');
     room.setAttribute('id', 'room');
@@ -134,8 +122,9 @@ async function init() {
     await createRooms();
 }
 
+// function to handle loading of template and textures data 
 async function loadMapTemplateData(templateSize) {
-    let fetchURL
+    let fetchURL;
     if (!templateWalled) {
          fetchURL = './mapTemplates/map' + templateSize + templateSize + '.json';
     }
@@ -161,19 +150,17 @@ async function loadTextures(e) {
    wallTexture3 = textures.textures[4].id;
 }
 
+// function to create room geometry 
 function createRooms() {
     const mapData = mapTemplate;
-    console.log(mapData, mapRes.height);
     let roomType = "Map Editor";
     // char info
-    const chars = mapRes.chars;
-    const charNum = mapRes.charnumber;
+    const chars = mapRes.chars; const charNum = mapRes.charnumber;
     let charLoopIndex = 0;
 
     const WALL_SIZE = 0.8;
     const WALL_HEIGHT = wallHeight;
     const el = document.getElementById('room');
-    // let playerPos;
     let wall;
     let floorIndex = 0;
 
@@ -252,7 +239,7 @@ function createRooms() {
     }
 }
 
-
+//JSON export function
 function exportJSON() {
     let data = {
         key: 'data'
@@ -261,14 +248,13 @@ function exportJSON() {
     // structure the map for consumption by engine
     // for every width length - add a space - FOR EXAMPLE 25 - ADD NEW LINEBREAK EVERY 25 ARR ELEMENTS
     // let structArr = addNewlines(mapTemplate, templateSize);
-    // console.log('stuctured array'+structArr);
     let JSONBlog = JSON.stringify(mapTemplate);
-    // let JSONParsed = addNewlines(JSONBlog, templateSize);
     // Create a blob of the data
          const fileToSave = new Blob([JSONBlog], {
         type: 'application/json'
     });
-// Save the file
+
+//Save the file
     saveAs(fileToSave, fileName);
     // increment save num for file names
     saveNum++;
@@ -280,10 +266,8 @@ function addNewlines(arr, breakLength) {
         for (let i = 0; i < arr.length; i++) {
         //if increment is divided by 2 and there is not a remainder of 0
          if (i% breakLength===0 && i!== 0){
-            //console log the length
-            console.log(arr[i])
+            // console.log(arr[i])
             //append a line break after every 10th element
-            //     arr.splice(i,0, '\n');
              arr[i] = parseInt(arr[i]+"\n");
         }
     }
@@ -297,6 +281,8 @@ function setOption(id) {
     allHeightSwitch(value);
     return parseInt(value);
 }
+
+// UI elements and associated event listeners 
 
 const wallType = document.getElementById('wallType')
 // reassign types for select dropdown UI
@@ -323,9 +309,9 @@ paintModeSelect.addEventListener("change", function() {
 
 const enemyTypeSelect = document.getElementById('enemies"')
 
-
+// Height switching for passed entity 
 function allHeightSwitch(currentEntity){
-    console.log('passed Curr'+currentEntity);
+    // console.log('passed Curr'+currentEntity);
     if (currentEntity == 0){
         wallHeight = 0;
         heightY= wallHeight/2;
@@ -346,16 +332,14 @@ function allHeightSwitch(currentEntity){
         heightY = 0;
         console.log(wallHeight);
     }
-
     else{
         wallHeight = 5;
     }
 }
 
-
+// Painting mode ?
 function switchPaintMode(currentPaintMode){
     const enemyTitle = document.getElementById('enemiesTitle');
-
     if (currentPaintMode === "wall"){
         enemyTypeSelect.setAttribute('hidden', '');
         enemyTitle.setAttribute('hidden', '');
@@ -372,7 +356,7 @@ function switchPaintMode(currentPaintMode){
     }
 }
 
-
+// Check if Delete mode is on and init delete Mode if it is 
 const deleteCheckbox = document.querySelector("input[name=deletemode]");
 deleteCheckbox.addEventListener('change', function() {
     if (this.checked) {
