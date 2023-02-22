@@ -122,4 +122,3 @@ AFRAME.registerComponent('room', {
         }
     },
 });
-
